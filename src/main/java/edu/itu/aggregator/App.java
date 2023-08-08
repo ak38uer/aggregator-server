@@ -2,7 +2,6 @@ package edu.itu.aggregator;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
@@ -27,8 +26,8 @@ public class App
         String outFile = "C:\\Users\\Invest Service\\Documents\\AVK\\TEACH\\Magistr\\My_Mag\\Smnt_Web\\transport-out.owl";
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
         model.read(ontFile);
-        for (ExtendedIterator i = model.listClasses(); i.hasNext();) {
-            OntClass c = (OntClass) i.next();
+        for (ExtendedIterator<OntClass> i = model.listClasses(); i.hasNext();) {
+            OntClass c = i.next();
             System.out.println(c.getLocalName());
         };
         FileOutputStream out = new FileOutputStream(outFile);
